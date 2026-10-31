@@ -1986,3 +1986,43 @@ body::before, body::after, #root::before, .rail::before, .rail::after,
 .btn.btn-google:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 3px 0 #c9d1e3, 0 12px 22px -12px rgba(12,35,99,.45); }
 .btn.btn-google:active:not(:disabled) { transform: translateY(0); }
 [data-theme="dark"] .btn.btn-google { background: #fff; color: #0c2363; }
+
+/* ---------- Fit every screen ----------
+   Grid and flex children default to "as wide as their content", so one long
+   row (a segmented control, a URL) could push a card — and the page — wider
+   than the phone. These rules let everything shrink to the screen instead. */
+html, body { max-width: 100%; overflow-x: clip; }
+.split, .grid-main { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1101px) { .split { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.panel, .form, .split > *, .grid-main > *, .auto-section, .section-title, .field, .form-row > * { min-width: 0; }
+input, select, textarea, .segmented, .search { max-width: 100%; }
+.section-title p, .muted, .note, .field-hint { overflow-wrap: anywhere; }
+
+/* Choice pills inside cards wrap onto a second line instead of running off-screen */
+.panel .segmented, .form .segmented, .modal .segmented { display: flex; flex-wrap: wrap; width: 100%; }
+.panel .segmented button, .form .segmented button, .modal .segmented button {
+  flex: 1 1 auto; justify-content: center; text-align: center; white-space: normal; line-height: 1.25; padding: 7px 12px;
+}
+
+@media (max-width: 860px) {
+  .page-head > *, .a-head > * { min-width: 0; max-width: 100%; }
+  .a-actions, .page-actions, .toolbar { max-width: 100%; }
+  .toolbar .search { flex: 1 1 100%; }
+  .a-actions .segmented, .page-head .segmented, .toolbar .segmented {
+    width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .a-actions .segmented::-webkit-scrollbar, .page-head .segmented::-webkit-scrollbar, .toolbar .segmented::-webkit-scrollbar { display: none; }
+  .a-actions .segmented button, .toolbar .segmented button, .page-head .segmented button { flex: 1 0 auto; padding: 0 10px; }
+  .a-actions .btn { flex: 1 1 auto; justify-content: center; }
+  .test-send .row { flex-wrap: wrap; }
+  .test-send .row input { flex: 1 1 160px; min-width: 0; }
+  .test-send .row .btn { flex: 1 1 100%; justify-content: center; }
+  .panel-head { flex-wrap: wrap; gap: 8px; }
+  .modal { max-width: calc(100vw - 16px); }
+}
+@media (max-width: 380px) {
+  .panel { padding-left: 14px; padding-right: 14px; }
+}
+.analytics { grid-template-columns: minmax(0, 1fr); }
+.analytics > * { min-width: 0; }
+@media (max-width: 400px) { .analytics { margin-left: 0; margin-right: 0; } }
