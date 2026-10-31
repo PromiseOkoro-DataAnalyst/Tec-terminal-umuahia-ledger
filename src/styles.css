@@ -1978,3 +1978,11 @@ body::before, body::after, #root::before, .rail::before, .rail::after,
   .rail-link { min-height: 36px; padding-top: 6px; padding-bottom: 6px; }
   .rail-top { padding-bottom: 14px; min-height: 52px; }
 }
+
+/* ---------- Google sign-in ---------- */
+.or-line { display: flex; align-items: center; gap: 12px; color: #6b7590; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; margin: 2px 0; }
+.or-line::before, .or-line::after { content: ''; flex: 1; height: 1px; background: #dfe4ef; }
+.btn.btn-google { width: 100%; justify-content: center; gap: 10px; background: #fff; color: #0c2363; border: 1px solid #d6dcea; box-shadow: 0 1px 0 #c9d1e3, 0 6px 16px -10px rgba(12,35,99,.35); font-weight: 600; transition: transform .18s ease, box-shadow .18s ease; }
+.btn.btn-google:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 3px 0 #c9d1e3, 0 12px 22px -12px rgba(12,35,99,.45); }
+.btn.btn-google:active:not(:disabled) { transform: translateY(0); }
+[data-theme="dark"] .btn.btn-google { background: #fff; color: #0c2363; }
